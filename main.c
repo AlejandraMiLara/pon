@@ -1,4 +1,9 @@
 #include "raylib.h"
+#include "estado.h"
+#include "menu.h"
+#include "juego.h"
+
+EstadoPantalla *estadoActual;
 
 typedef enum GameScreen {
      MENU, 
@@ -12,6 +17,8 @@ typedef enum GameScreen {
 
 
 int main(void) {
+    estadoActual = &MenuState;
+
     const int screenWidth = 800;
     const int screenHeight = 450;
     SetConfigFlags(FLAG_MSAA_4X_HINT);
@@ -226,6 +233,8 @@ int main(void) {
 
     while (!WindowShouldClose()) 
     {
+
+        estadoActual->Update();
 
         Vector2 mouse = GetMousePosition();
 
